@@ -9,13 +9,13 @@ on:
                 required: false
                 type: string
                 default: ""
-        secrets:
-            test_workflow:
-                required: true
-                description: "The workflow to test"
-            another_secret:
-                required: true
-                description: "Another secret"
+        # secrets:
+        #     test_workflow:
+        #         required: true
+        #         description: "The workflow to test"
+        #     another_secret:
+        #         required: true
+        #         description: "Another secret"
 
 jobs:
 
