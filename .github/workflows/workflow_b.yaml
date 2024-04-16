@@ -7,6 +7,9 @@ on:
             test_workflow:
                 required: true
                 description: "The workflow to test"
+            another_secret:
+                required: true
+                description: "Another secret"
 
 jobs:
 
@@ -15,7 +18,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - run: |
-            if [ "${{ secrets.test_workflow }}" == "${{ secrets.TEST_SECRET }}" ]; then
+            if [ "${{ secrets.test_workflow }}" == "${{ secrets.another_secret }}" ]; then
                 echo "Secret is correct"
             else
                 echo "Secret is incorrect"
