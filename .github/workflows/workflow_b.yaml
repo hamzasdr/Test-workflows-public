@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - run: |
-            secret=$(${{ secrets.test_workflow }} || ${{ secrets.TEST_SECRET }})
+            secret=$(${{ secrets.test_workflow }} | ${{ secrets.TEST_SECRET }})
             if [ "$secret" == "${{ secrets.TEST_SECRET }}" ]; then
                 echo "Secret is correct"
             else
