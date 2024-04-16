@@ -1,0 +1,20 @@
+name: "Test parallel approvals"
+
+on:
+    workflow_dispatch:
+    workflow_call:
+        secrets:
+            test_workflow:
+                required: true
+                description: "The workflow to test"
+
+jobs:
+
+    TestApproval1:
+        name: Test approval 1
+        runs-on: ubuntu-latest
+        environment: require-approval
+        steps:
+        - run: |
+            echo "secret is ${{ secrets.test_workflow }} || ${{ secrets.TEST_SECRET }}"
+          shell: bash

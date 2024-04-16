@@ -1,7 +1,8 @@
 name: "Test parallel approvals"
 
 on:
-    push:
+    workflow_dispatch:
+    # push:
 
 jobs:
 
@@ -26,7 +27,7 @@ jobs:
     TestApproval2:
         name: Environment approval 2
         runs-on: ubuntu-latest
-        environment: another-required-approval
+        environment: require-approval2
         steps:
         - run: |
             echo "Approval #2 test."
