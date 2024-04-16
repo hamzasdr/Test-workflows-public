@@ -16,6 +16,4 @@ jobs:
         uses: ./.github/workflows/workflow_b.yaml
         with:
             override: latest
-        secrets:
-            test_workflow: ${{ secrets.test_workflow || secrets.TEST_SECRET }}
-            another_secret: ${{ secrets.ANOTHER_TEST }}+
+        secrets: inherit
