@@ -30,7 +30,7 @@ jobs:
           run: |
             SRC_ACCOUNT="${{ vars.TEST_LATEST_VAR }}"
             SRC_PWD="${{ secrets.TEST_SECRET }}"
-            if [ -z "${{ inputs.override }}" ]; then
+            if [ -n "${{ inputs.override }}" ]; then
                 case "${{ inputs.override }}" in
                 "latest")
                     SRC_ACCOUNT="${{ vars.TEST_STAGING_VAR }}"
