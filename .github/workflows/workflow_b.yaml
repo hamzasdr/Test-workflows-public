@@ -18,8 +18,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - run: |
-            environment="TEST_LATEST_VAR"
-            SELECTED_VAR="${!environment}"
+            VAR_NAME="TEST_LATEST_VAR"
+            SELECTED_VAR="${!VAR_NAME}"
             echo "Selected variable for environment $ENVIRONMENT is $SELECTED_VAR"
             # if [ "${{ secrets.test_workflow }}" == "${{ secrets.another_secret }}" ]; then
             #     echo "Secret is correct"
