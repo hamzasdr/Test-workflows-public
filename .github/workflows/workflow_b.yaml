@@ -18,9 +18,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - run: |
-            if [ "${{ secrets.test_workflow }}" == "${{ secrets.another_secret }}" ]; then
-                echo "Secret is correct"
-            else
-                echo "Secret is incorrect"
-            fi
+            environment="TEST_LATEST_VAR"
+            SELECTED_VAR="${!environment}"
+            echo "Selected variable for environment $ENVIRONMENT is $SELECTED_VAR"
+            # if [ "${{ secrets.test_workflow }}" == "${{ secrets.another_secret }}" ]; then
+            #     echo "Secret is correct"
+            # else
+            #     echo "Secret is incorrect"
+            # fi
           shell: bash
