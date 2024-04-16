@@ -3,6 +3,12 @@ name: "Test secrets"
 on:
     workflow_dispatch:
     workflow_call:
+        inputs:
+            override:
+                description: "Override the default value"
+                required: false
+                type: string
+                default: ""
         secrets:
             test_workflow:
                 required: true
@@ -17,13 +23,32 @@ jobs:
         name: Test approval 1
         runs-on: ubuntu-latest
         steps:
+        - uses: actions/checkout@v4
+        - name: Set src account credentials
+          id: set-src-account-credentials
+          shell: bash
+          run: |
+            SRC_ACCOUNT=${{ vars.TEST_LATEST_VAR }}
+            SRC_PWD=${{ secrets.TEST_SECRET }}
+            if [ -z "${{ inputs.override }}" ]; then
+                case "${{ inputs.override }}" in
+                "latest")
+                    SRC_ACCOUNT=${{ vars.TEST_STAGING_VAR }}
+                    SRC_PWD=${{ secrets.ANOTHER_TEST }}
+                    ;;
+                *)
+                    echo "option not supported"
+                    exit 1
+                    ;;
+                esac
+            fi
+            echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
+            echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
         - run: |
-            VAR_NAME="TEST_LATEST_VAR"
-            SELECTED_VAR="${!VAR_NAME}"
-            echo "Selected variable for environment $ENVIRONMENT is $SELECTED_VAR"
-            # if [ "${{ secrets.test_workflow }}" == "${{ secrets.another_secret }}" ]; then
-            #     echo "Secret is correct"
-            # else
-            #     echo "Secret is incorrect"
-            # fi
+            echo "account is: ${{ steps.set-src-account-credentials.outputs.src_snowsql_account }}"
+            if [ "${{ steps.set-src-account-credentials.outputs.src_snowsql_password }}" == "${{ secrets.TEST_SECRET }}" ]; then
+                echo "Secret is correct"
+            else
+                echo "Secret is incorrect"
+            fi
           shell: bash
