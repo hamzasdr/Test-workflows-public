@@ -25,5 +25,5 @@ runs:
         }'
         export env_map
         PROVIDER_ACCOUNT="${{ fromJSON(inputs.environment)[format('{0}', fromJSON(env.env_map)[inputs.test])]}}"
-        echo "secret is ${{ secrets.${{ fromJSON(env.env_map)[inputs.test] }} }}"
+        echo "secret is ${{ secrets.TEST_SECRET }}"
         echo "var is $PROVIDER_ACCOUNT"
