@@ -74,13 +74,6 @@ jobs:
             echo "versions=$versions" >> $GITHUB_OUTPUT
           shell: bash
         - run: |
-            env_vap="{
-                "spcs-int": "VAR",
-                "spcs-staging": "STAGING",
-                "spcs-prod-uswest": "PROD_WESTUS_1",
-                "spcs-prod-useast": "PROD_EASTUS_1"
-            }"
-            PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
-            # echo "ENV_MAP=$ENV_MAP" >> $GITHUB_ENV
+            echo "Approval is ${{ fromJSON(steps.test-vars.outputs.versions)[inputs.override] }}"
             echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(steps.test-vars.outputs.versions)[inputs.override])] }}"
           shell: bash
