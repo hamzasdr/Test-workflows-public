@@ -61,6 +61,8 @@ jobs:
                 "spcs-prod-uswest": "PROD_WESTUS_1",
                 "spcs-prod-useast": "PROD_EASTUS_1"
             }'
-            export env_map
+            export ENV_MAP
             echo "override is : ${{ inputs.override }}"
+            echo "val is : ${{ fromJSON(env.ENV_MAP)['spcs-int'] }}"
+            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.env_map)[inputs.override])] }}"
           shell: bash
