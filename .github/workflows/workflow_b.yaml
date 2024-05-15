@@ -24,7 +24,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v4
-        - uses: ./github/actions/test-vars
+        - uses: ./.github/actions/test-vars
           id: test-vars
           with:
             environment: "test"
