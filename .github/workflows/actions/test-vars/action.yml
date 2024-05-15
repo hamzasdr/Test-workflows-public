@@ -1,0 +1,20 @@
+name: Test var context
+description: Test var context
+
+inputs:
+  environment:
+    required: true
+    description: The environment this native app is being deployed to
+
+outputs:
+  test-var:
+    value: ${{ steps.fetch-account-creds.outputs.snowsql_provider_account }}
+runs:
+  using: 'composite'
+  steps:
+    - id: fetch-account-creds
+      shell: bash
+      run: |
+        PROVIDER_ACCOUNT="${{ vars.TEST_LATEST_VAR }}"
+        echo "var is $PROVIDER_ACCOUNT"
+        echo "test-var=$PROVIDER_ACCOUNT" >> $GITHUB_OUTPUT

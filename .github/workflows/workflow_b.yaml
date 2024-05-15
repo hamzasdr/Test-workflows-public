@@ -24,31 +24,35 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v4
-        - name: Set src account credentials
-          id: set-src-account-credentials
-          shell: bash
-          run: |
-            SRC_ACCOUNT="${{ vars.TEST_LATEST_VAR }}"
-            SRC_PWD="${{ secrets.TEST_SECRET }}"
-            if [ -n "${{ inputs.override }}" ]; then
-                case "${{ inputs.override }}" in
-                "latest")
-                    SRC_ACCOUNT="${{ vars.TEST_STAGING_VAR }}"
-                    SRC_PWD="${{ secrets.ANOTHER_TEST }}"
-                    ;;
-                *)
-                    echo "option not supported"
-                    exit 1
-                    ;;
-                esac
-            fi
-            echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
-            echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
-        - run: |
-            echo "account is: ${{ steps.set-src-account-credentials.outputs.src_snowsql_account }}"
-            if [ "${{ steps.set-src-account-credentials.outputs.src_snowsql_password }}" == "${{ secrets.TEST_SECRET }}" ]; then
-                echo "Secret is correct"
-            else
-                echo "Secret is incorrect"
-            fi
-          shell: bash
+        - uses: ./github/actions/test-vars
+          id: test-vars
+          with:
+            environment: "test"
+        # - name: Set src account credentials
+        #   id: set-src-account-credentials
+        #   shell: bash
+        #   run: |
+        #     SRC_ACCOUNT="${{ vars.TEST_LATEST_VAR }}"
+        #     SRC_PWD="${{ secrets.TEST_SECRET }}"
+        #     if [ -n "${{ inputs.override }}" ]; then
+        #         case "${{ inputs.override }}" in
+        #         "latest")
+        #             SRC_ACCOUNT="${{ vars.TEST_STAGING_VAR }}"
+        #             SRC_PWD="${{ secrets.ANOTHER_TEST }}"
+        #             ;;
+        #         *)
+        #             echo "option not supported"
+        #             exit 1
+        #             ;;
+        #         esac
+        #     fi
+        #     echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
+        #     echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
+        # - run: |
+        #     echo "account is: ${{ steps.set-src-account-credentials.outputs.src_snowsql_account }}"
+        #     if [ "${{ steps.set-src-account-credentials.outputs.src_snowsql_password }}" == "${{ secrets.TEST_SECRET }}" ]; then
+        #         echo "Secret is correct"
+        #     else
+        #         echo "Secret is incorrect"
+        #     fi
+        #   shell: bash
