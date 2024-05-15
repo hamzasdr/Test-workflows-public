@@ -49,5 +49,5 @@ jobs:
         #     echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
         #     echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
         - run: |
-            echo "account is: secrets['TEST_SECRET']"
+            echo "account is: ${{ secrets['TEST_SECRET'] }}"
           shell: bash
