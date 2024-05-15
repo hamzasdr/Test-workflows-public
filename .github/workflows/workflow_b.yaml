@@ -64,5 +64,5 @@ jobs:
             export ENV_MAP
             echo "override is : ${{ inputs.override }}"
             echo "val is : ${{ fromJSON(env.ENV_MAP)['spcs-int'] }}"
-            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.env_map)[inputs.override])] }}"
+            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.ENV_MAP)[inputs.override])] }}"
           shell: bash
