@@ -72,10 +72,11 @@ jobs:
             \"otelcolImageVersion\": \"${{ inputs.otel-collector-version }}\" \
             }"
             echo "versions=$versions" >> $GITHUB_OUTPUT
+            echo "MAPS=$versions" >> $GITHUB_ENV
           shell: bash
         - run: |
             versions='{"spcs-int": "VAR","spcs-staging": "STAGING","spcs-prod-uswest": "PROD_WESTUS_1","spcs-prod-useast": "PROD_EASTUS_1"}'
-            echo "MAPS=$versions" >> $GITHUB_ENV
+            
             echo "map is ${{ env.MAPS }}"
-            echo "step output is ${{ steps.test-vars.outputs.test-var }}"
+            echo "step output is ${{ steps.test-vars.outputs.versions }}"
           shell: bash
