@@ -43,18 +43,36 @@ jobs:
         #   id: test-vars
         #   with:
         #     environment: ${{ toJson(vars) }}
-        - name: Set src account credentials
-          id: set-src-account-credentials
-          run: |
-            echo "gello ? "
-            # map='{
-            #     "spcs-int": "VAR",
-            #     "spcs-staging": "STAGING",
-            #     "spcs-prod-uswest": "PROD_WESTUS_1",
-            #     "spcs-prod-useast": "PROD_EASTUS_1"}'
-            # echo "map=$map" >> $GITHUB_OUTPUT
+        # - name: Set src account credentials
+        #   id: set-src-account-credentials
+        #   shell: bash
+        #   run: |
+        #     SRC_ACCOUNT="${{ vars.TEST_LATEST_VAR }}"
+        #     SRC_PWD="${{ secrets.TEST_SECRET }}"
+        #     if [ -n "${{ inputs.override }}" ]; then
+        #         case "${{ inputs.override }}" in
+        #         "latest")
+        #             SRC_ACCOUNT="${{ vars.TEST_STAGING_VAR }}"
+        #             SRC_PWD="${{ secrets.ANOTHER_TEST }}"
+        #             ;;
+        #         *)
+        #             echo "option not supported"
+        #             exit 1
+        #             ;;
+        #         esac
+        #     fi
+        #     echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
+        #     echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
         - run: |
+            env_vap='{
+                "spcs-int": "VAR",
+                "spcs-staging": "STAGING",
+                "spcs-prod-uswest": "PROD_WESTUS_1",
+                "spcs-prod-useast": "PROD_EASTUS_1"
+            }'
+            PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
+            # echo "ENV_MAP=$ENV_MAP" >> $GITHUB_ENV
             echo "override is : ${{ inputs.override }}"
             echo "valS is ${{ fromJSON(inputs.map)['spcs-int'] }}"
-            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(steps.set-src-account-credentials.outputs.map)[inputs.override])] }}"
+            # echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env_vap)[inputs.override])] }}"
           shell: bash
