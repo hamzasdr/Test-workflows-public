@@ -46,12 +46,13 @@ jobs:
         - name: Set src account credentials
           id: set-src-account-credentials
           run: |
-            map='{
-                "spcs-int": "VAR",
-                "spcs-staging": "STAGING",
-                "spcs-prod-uswest": "PROD_WESTUS_1",
-                "spcs-prod-useast": "PROD_EASTUS_1"}'
-            echo "map=$map" >> $GITHUB_OUTPUT
+            echo "gello ? "
+            # map='{
+            #     "spcs-int": "VAR",
+            #     "spcs-staging": "STAGING",
+            #     "spcs-prod-uswest": "PROD_WESTUS_1",
+            #     "spcs-prod-useast": "PROD_EASTUS_1"}'
+            # echo "map=$map" >> $GITHUB_OUTPUT
         - run: |
             echo "override is : ${{ inputs.override }}"
             echo "valS is ${{ fromJSON(inputs.map)['spcs-int'] }}"
