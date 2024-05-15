@@ -56,5 +56,5 @@ jobs:
                 "spcs-prod-useast": "PROD_EASTUS_1"
             }'
             export env_map
-            echo "account is: ${{ vars[format('TEST_LATEST_{0}', fromJSON(env.env_map)[inputs.override])] }}"
+            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.env_map)[inputs.override])] }}"
           shell: bash
