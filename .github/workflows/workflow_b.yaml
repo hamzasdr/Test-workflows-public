@@ -55,7 +55,7 @@ jobs:
         #     echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
         #     echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
         - run: |
-            env_map='{
+            ENV_MAP='{
                 "spcs-int": "VAR",
                 "spcs-staging": "STAGING",
                 "spcs-prod-uswest": "PROD_WESTUS_1",
@@ -63,6 +63,6 @@ jobs:
             }'
             export env_map
             echo "override is : ${{ inputs.override }}"
-            echo "val is : ${{ fromJSON(env.env_map)['spcs-int'] }}"
+            echo "val is : ${{ fromJSON(env.ENV_MAP)['spcs-int'] }}"
             echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.env_map)[inputs.override])] }}"
           shell: bash
