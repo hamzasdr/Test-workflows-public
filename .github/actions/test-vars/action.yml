@@ -5,6 +5,10 @@ inputs:
   environment:
     required: true
     description: The environment this native app is being deployed to
+  test:
+    required: false
+    default: "TEST_LATEST_VAR"
+    description: The environment this native app is being deployed to
 
 outputs:
   test-var:
@@ -15,5 +19,11 @@ runs:
     - id: fetch-account-creds
       shell: bash
       run: |
-        PROVIDER_ACCOUNT="${{ fromJSON(inputs.environment)['TEST_LATEST_VAR']}}"
+        env_map='{
+          "TEST_LATEST_VAR": "dummy val",
+          "TEST_STAGING_VAR": "staging dummy"
+        }'
+        export env_map
+        PROVIDER_ACCOUNT="${{ fromJSON(inputs.environment)[format('{0}', fromJSON(env.env_map)[inputs.test])]}}"
+        echo "secret is ${{ secrets['TEST_SECRET'] }}"
         echo "var is $PROVIDER_ACCOUNT"
