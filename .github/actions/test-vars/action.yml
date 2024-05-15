@@ -15,5 +15,5 @@ runs:
     - id: fetch-account-creds
       shell: bash
       run: |
-        PROVIDER_ACCOUNT="${{ fromJSON(inputs.environment)[TEST_LATEST_VAR] }}"
+        PROVIDER_ACCOUNT="${{ fromJSON(inputs.environment)['TEST_LATEST_VAR']}}"
         echo "var is $PROVIDER_ACCOUNT"
