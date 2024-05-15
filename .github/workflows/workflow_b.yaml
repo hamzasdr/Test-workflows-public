@@ -74,10 +74,7 @@ jobs:
             echo "versions=$versions" >> $GITHUB_OUTPUT
           shell: bash
         - run: |
-            versions='{"spcs-int": "VAR","spcs-staging": "STAGING","spcs-prod-uswest": "PROD_WESTUS_1","spcs-prod-useast": "PROD_EASTUS_1"}'
-            echo "MAPS=$versions" >> $GITHUB_ENV
-            echo "Approval is ${{ fromJSON(env.MAPS)[inputs.override] }}"
-            echo "account is: ${{ vars[format('TEST_LATEST_{0}', fromJSON(env.MAPS)[inputs.override])] }}"
+            echo "secret is ${{ secrets.TEST_SECRET }}"
           env: 
             MAPS: >- 
                 {
