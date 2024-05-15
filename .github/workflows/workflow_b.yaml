@@ -77,5 +77,4 @@ jobs:
             versions='{"spcs-int": "VAR","spcs-staging": "STAGING","spcs-prod-uswest": "PROD_WESTUS_1","spcs-prod-useast": "PROD_EASTUS_1"}'
             echo "MAPS=$versions" >> $GITHUB_ENV
             echo "Approval is ${{ fromJSON(env.MAPS)[inputs.override] }}"
-            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(steps.test-vars.outputs.versions)[inputs.override])] }}"
           shell: bash
