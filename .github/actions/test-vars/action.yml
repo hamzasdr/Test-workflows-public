@@ -17,4 +17,3 @@ runs:
       run: |
         PROVIDER_ACCOUNT="${{ vars.TEST_LATEST_VAR }}"
         echo "var is $PROVIDER_ACCOUNT"
-        echo "test-var=$PROVIDER_ACCOUNT" >> $GITHUB_OUTPUT
