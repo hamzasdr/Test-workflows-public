@@ -65,6 +65,5 @@ jobs:
             PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
             echo "override is : ${{ inputs.override }}"
             echo "valS is ${!PROVIDER_ACCOUNT_VAR}"
-            echo "val is : ${{ fromJSON(${env.ENV_MAP})['spcs-int'] }}"
             echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.ENV_MAP)[inputs.override])] }}"
           shell: bash
