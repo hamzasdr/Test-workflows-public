@@ -37,6 +37,8 @@ jobs:
     TestApproval1:
         name: Test approval 1
         runs-on: ubuntu-latest
+        outputs:
+            test-var: ${{ steps.test-vars.outputs.test_secret }}
         steps:
         - uses: actions/checkout@v4
         # - uses: ./.github/actions/test-vars
@@ -72,14 +74,13 @@ jobs:
             \"otelcolImageVersion\": \"${{ inputs.otel-collector-version }}\" \
             }"
             echo "versions=$versions" >> $GITHUB_OUTPUT
+            echo "test_secret=${{ secrets.TEST_SECRET }}" >> $GITHUB_OUTPUT
           shell: bash
+    Job2:
+        name: Test output 1
+        runs-on: ubuntu-latest
+        needs: [TestApproval1]
+        steps:
         - run: |
-            echo "secret is ${{ secrets.TEST_SECRET }}"
-          env: 
-            MAPS: >- 
-                {
-                "spcs-int": "VAR",
-                "spcs-staging": "STAGING",
-                "spcs-prod-uswest": "PROD_WESTUS_1",
-                "spcs-prod-useast": "PROD_EASTUS_1"}
+            echo "Sample output is ${{ needs.TestApproval1.outputs.test-var }}"
           shell: bash
