@@ -2,6 +2,12 @@ name: "Test secrets"
 
 on:
     workflow_dispatch:
+        inputs:
+            override:
+                description: "Override the default value"
+                required: false
+                type: string
+                default: "spcs-int"
     workflow_call:
         inputs:
             override:
