@@ -65,6 +65,6 @@ jobs:
             export ENV_MAP
             PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
             echo "override is : ${{ inputs.override }}"
-            echo \"valS is ${{ fromJSON('{"spcs-int": "VAR","spcs-staging": "STAGING","spcs-prod-uswest": "PROD_WESTUS_1","spcs-prod-useast": "PROD_EASTUS_1"}')[inputs.override] }}\"
+            echo "valS is ${{ fromJSON(env.ENV_MAP)['TEST_LATEST_VAR'] }}"
             echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.ENV_MAP)[inputs.override])] }}"
           shell: bash
