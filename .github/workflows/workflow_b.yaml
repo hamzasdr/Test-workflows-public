@@ -78,5 +78,4 @@ jobs:
             echo "MAPS=$versions" >> $GITHUB_ENV
             echo "map is ${{ env.MAPS }}"
             echo "step output is ${{ steps.test-vars.outputs.test-var }}"
-            echo "Approval is ${{ fromJSON(env.MAPS)[inputs.override] }}"
           shell: bash
