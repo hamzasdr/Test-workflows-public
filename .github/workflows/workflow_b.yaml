@@ -75,7 +75,7 @@ jobs:
           shell: bash
         - run: |
             versions="{ \
-            \"spcs-int\": \"VAR\", \
+            \"spcs-int\": \"VAR\" \
             }"
             echo "MAPS=$versions" >> $GITHUB_ENV
             echo "Approval is ${{ fromJSON(env.MAPS)[inputs.override] }}"
