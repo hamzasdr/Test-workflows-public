@@ -27,7 +27,7 @@ jobs:
         - uses: ./.github/actions/test-vars
           id: test-vars
           with:
-            environment: "test"
+            environment: ${{ toJson(vars) }}
         # - name: Set src account credentials
         #   id: set-src-account-credentials
         #   shell: bash
