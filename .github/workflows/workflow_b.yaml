@@ -24,10 +24,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v4
-        - uses: ./.github/actions/test-vars
-          id: test-vars
-          with:
-            environment: ${{ toJson(vars) }}
+        # - uses: ./.github/actions/test-vars
+        #   id: test-vars
+        #   with:
+        #     environment: ${{ toJson(vars) }}
         # - name: Set src account credentials
         #   id: set-src-account-credentials
         #   shell: bash
