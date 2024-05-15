@@ -61,9 +61,10 @@ jobs:
                 "spcs-prod-uswest": "PROD_WESTUS_1",
                 "spcs-prod-useast": "PROD_EASTUS_1"
             }'
+            '{"spcs-int": "VAR","spcs-staging": "STAGING","spcs-prod-uswest": "PROD_WESTUS_1","spcs-prod-useast": "PROD_EASTUS_1"}'
             export ENV_MAP
             PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
             echo "override is : ${{ inputs.override }}"
-            echo "valS is ${!PROVIDER_ACCOUNT_VAR}"
+            echo \"valS is ${{ fromJSON('{"spcs-int": "VAR","spcs-staging": "STAGING","spcs-prod-uswest": "PROD_WESTUS_1","spcs-prod-useast": "PROD_EASTUS_1"}')[inputs.override] }}\"
             echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.ENV_MAP)[inputs.override])] }}"
           shell: bash
