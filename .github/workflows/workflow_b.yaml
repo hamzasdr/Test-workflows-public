@@ -73,6 +73,6 @@ jobs:
             PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
             # echo "ENV_MAP=$ENV_MAP" >> $GITHUB_ENV
             echo "override is : ${{ inputs.override }}"
-            echo "valS is ${{ fromJSON(inputs.map)['TEST_LATEST_VAR'] }}"
+            echo "valS is ${{ fromJSON(inputs.map)['spcs-int'] }}"
             # echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.ENV_MAP)[inputs.override])] }}"
           shell: bash
