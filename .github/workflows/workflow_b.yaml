@@ -82,6 +82,5 @@ jobs:
             }"
             PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
             # echo "ENV_MAP=$ENV_MAP" >> $GITHUB_ENV
-            echo "override is : ${{ inputs.override }}"int'] }}"
             echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(steps.test-vars.outputs.versions)[inputs.override])] }}"
           shell: bash
