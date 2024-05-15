@@ -53,9 +53,9 @@ jobs:
                 "spcs-prod-uswest": "PROD_WESTUS_1",
                 "spcs-prod-useast": "PROD_EASTUS_1"
             }'
-            echo "map=$map" >> $GITHUB_ENV
+            echo "map=$map" >> $GITHUB_OUTPUT
         - run: |
             echo "override is : ${{ inputs.override }}"
             echo "valS is ${{ fromJSON(inputs.map)['spcs-int'] }}"
-            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env.ENV_MAP)[inputs.override])] }}"
+            echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(steps.set-src-account-credentials.outputs.map)[inputs.override])] }}"
           shell: bash
