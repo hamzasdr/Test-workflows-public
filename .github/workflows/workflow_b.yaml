@@ -8,7 +8,7 @@ on:
                 description: "Override the default value"
                 required: false
                 type: string
-                default: ""
+                default: "spcs-int"
         # secrets:
         #     test_workflow:
         #         required: true
@@ -49,5 +49,12 @@ jobs:
         #     echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
         #     echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
         - run: |
-            echo "account is: ${{ secrets['TEST_SECRET'] }}"
+            env_map='{
+                "spcs-int": "VAR",
+                "spcs-staging": "STAGING",
+                "spcs-prod-uswest": "PROD_WESTUS_1",
+                "spcs-prod-useast": "PROD_EASTUS_1"
+            }'
+            export env_map
+            echo "account is: ${{ vars[format('TEST_LATEST_{0}', fromJSON(env.env_map)[inputs.override])] }}"
           shell: bash
