@@ -63,6 +63,16 @@ jobs:
         #     fi
         #     echo "src_snowsql_password=$SRC_PWD" >> $GITHUB_OUTPUT
         #     echo "src_snowsql_account=$SRC_ACCOUNT" >> $GITHUB_OUTPUT
+        - id: test-vars 
+          run: |
+            env_vap='{
+                "spcs-int": "VAR",
+                "spcs-staging": "STAGING",
+                "spcs-prod-uswest": "PROD_WESTUS_1",
+                "spcs-prod-useast": "PROD_EASTUS_1"
+            }'
+            echo "env_vap=$env_vap" >> $GITHUB_OUTPUT
+          shell: bash
         - run: |
             env_vap='{
                 "spcs-int": "VAR",
@@ -72,7 +82,7 @@ jobs:
             }'
             PROVIDER_ACCOUNT_VAR="TEST_LATEST_VAR"
             # echo "ENV_MAP=$ENV_MAP" >> $GITHUB_ENV
-            echo "override is : ${{ inputs.override }}"
-            echo "valS is ${{ fromJSON(inputs.map)['spcs-int'] }}"
-            # echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(env_vap)[inputs.override])] }}"
+            echo "valS is ${{ fromJSON(inputs.map)['spcs-
+            echo "override is : ${{ inputs.override }}"int'] }}"
+            # echo "account is: ${{ vars[format('TEST_LATEST_%s', fromJSON(steps.test-vars.outputs.env_vap)[inputs.override])] }}"
           shell: bash
