@@ -76,6 +76,11 @@ jobs:
             echo "versions=$versions" >> $GITHUB_OUTPUT
             echo "test_secret=${{ secrets.TEST_SECRET }}" >> $GITHUB_OUTPUT
           shell: bash
+        - name: test
+          run: |
+            echo "test secret is ${{ steps.test-vars.outputs.test_secret }}"
+          shell: bash
+          
     Job2:
         name: Test output 1
         runs-on: ubuntu-latest
