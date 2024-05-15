@@ -47,13 +47,13 @@ jobs:
           id: set-src-account-credentials
           shell: bash
           run: |
-            ENV_MAP='{
+            map='{
                 "spcs-int": "VAR",
                 "spcs-staging": "STAGING",
                 "spcs-prod-uswest": "PROD_WESTUS_1",
                 "spcs-prod-useast": "PROD_EASTUS_1"
             }'
-            echo "ENV_MAP=$ENV_MAP" >> $GITHUB_ENV
+            echo "map=$map" >> $GITHUB_ENV
         - run: |
             echo "override is : ${{ inputs.override }}"
             echo "valS is ${{ fromJSON(inputs.map)['spcs-int'] }}"
