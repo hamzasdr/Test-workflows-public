@@ -12,7 +12,7 @@ permissions:
   issues: write
   checks: write
   repository-projects: read
-  packages: write
+  packages: writey
   deployments: write
 jobs:
 
@@ -46,7 +46,7 @@ jobs:
         uses: chrnorm/deployment-status@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          state: failure
+          state: success
           deployment-id: ${{ needs.CreateDeployment.outputs.deployment_id }}
           log-url: ${{ steps.get_commit.outputs.tag_url }}
           auto-inactive: false
