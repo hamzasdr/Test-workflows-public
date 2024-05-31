@@ -3,7 +3,16 @@ name: "Test parallel approvals"
 on:
     push:
     # workflow_dispatch:
-
+permissions:
+  id-token: write
+  contents: write
+  actions: write
+  statuses: write
+  pull-requests: write
+  issues: write
+  checks: write
+  repository-projects: read
+  packages: write
 jobs:
 
   CreateDeployment:
