@@ -13,6 +13,7 @@ permissions:
   checks: write
   repository-projects: read
   packages: write
+  deployments: write
 jobs:
 
   CreateDeployment:
