@@ -46,7 +46,7 @@ jobs:
         uses: chrnorm/deployment-status@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          state: success
+          state: failure
           deployment-id: ${{ needs.CreateDeployment.outputs.deployment_id }}
           log-url: ${{ steps.get_commit.outputs.tag_url }}
           auto-inactive: false
