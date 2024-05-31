@@ -29,7 +29,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           environment: latest
           repo: Test-workflows-public
-          ref: ${{ github.sha }}
+          ref: 1a574d8a7c1f2e2cf3a3056130a3a5b57911c8b2
 
 
   UpdateDeploymentStatus:
