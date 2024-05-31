@@ -37,10 +37,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: CreateDeployment
     steps:
+      - name: get commit url
+        id: get_commit
+        run: |
+          commit_url="${{ github.server_url }}/${{ github.repository }}/commit/1a574d8a7c1f2e2cf3a3056130a3a5b57911c8b2"
+          echo "tag_url=${tag_url}" >> "$GITHUB_OUTPUT"
       - name: Deployment Status Update
         uses: chrnorm/deployment-status@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           state: success
           deployment-id: ${{ needs.CreateDeployment.outputs.deployment_id }}
+          log-url: ${{ steps.get_commit.outputs.tag_url }}
           auto-inactive: false
