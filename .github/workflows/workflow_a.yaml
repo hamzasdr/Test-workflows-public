@@ -12,7 +12,7 @@ permissions:
   issues: write
   checks: write
   repository-projects: read
-  packages: writey
+  packages: write
   deployments: write
 jobs:
 
